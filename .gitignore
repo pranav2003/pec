@@ -2,3 +2,9 @@ elpa
 eln-cache
 backups
 auto-save-list
+history
+tramp
+recentf
+custom-vars.el
+**/*~
+**/#*#
