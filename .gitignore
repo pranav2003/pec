@@ -2,6 +2,7 @@ elpa
 eln-cache
 backups
 auto-save-list
+transient
 history
 tramp
 recentf
