@@ -8,7 +8,7 @@
   :type 'string)
 
 ;; Uncomment on mac
-;; (setq myOs "mac")
+(setq myOs "mac")
 
 (defmacro when-mac (then)
   `(when (string-equal myOs "mac")
@@ -76,6 +76,7 @@
 	      "lsp-setup.el"
 	      "python-setup.el"
 	      "ocaml-setup.el"
+	      "rust-setup.el"
 
 	      ;; * Documents
 	      "pdf-setup.el"))

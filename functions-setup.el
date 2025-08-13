@@ -52,7 +52,7 @@
    (let ((target-dir (completing-read
 		      "Directory: "
 		      (with-temp-buffer
-			(insert-file-contents "/home/eric/.gd_idx")
+			(insert-file-contents "/home/pranav/.gd_idx")
 			(split-string (buffer-string) "\n" t)))))
      (if arg
 	 (dired-other-window target-dir)
