@@ -5,4 +5,5 @@
 (add-hook 'c-mode-common-hook
 	  (lambda ()
 	    (c-set-style "stroustrup")
-	    (company)))
+	    (company-mode)
+	    (flycheck-mode)))

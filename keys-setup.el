@@ -86,4 +86,11 @@
  "C-z /" compile)
 
  ; Delete up to / in filepath
-(define-key minibuffer-local-map (kbd "C-<backspace>") 'backward-kill-filepath)
+(defun my-backward-kill-filepath-minibuffer-setup ()
+  "Bind `backward-kill-filepath` in the current find-file minibuffer only."
+  (when (member this-command '(find-file dired))
+    (let ((map (copy-keymap (current-local-map))))
+      (define-key map (kbd "C-<backspace>") #'backward-kill-filepath)
+      (use-local-map map))))
+
+(add-hook 'minibuffer-setup-hook 'my-backward-kill-filepath-minibuffer-setup)

@@ -22,3 +22,7 @@
 	      ("C-p". company-select-previous)
 	      ("M-<". company-select-first)
 	      ("M->". company-select-last)))
+
+(use-package flycheck
+  :ensure t
+  :defer t)

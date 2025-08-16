@@ -6,6 +6,9 @@ transient
 history
 tramp
 recentf
+eshell
+games
 custom-vars.el
+.lsp*
 **/*~
 **/#*#
