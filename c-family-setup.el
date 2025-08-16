@@ -5,4 +5,4 @@
 (add-hook 'c-mode-common-hook
 	  (lambda ()
 	    (c-set-style "stroustrup")
-	    (filladapt-mode 1)))
+	    (company)))

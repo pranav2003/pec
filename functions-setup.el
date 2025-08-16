@@ -216,3 +216,13 @@ Version 2016-07-13"
   (let* ((h-m-s-list
 	  (-split-on (car (string-to-list ":")) (string-to-list str))))
     (mapconcat #'string (calc-hmsify h-m-s-list))))
+
+(defun backward-kill-filepath ()
+  "Delete backward up to the previous slash in minibuffer or string."
+  (interactive)
+  (let ((pt (point)))
+    (search-backward "/" (minibuffer-prompt-end) t)
+    (if (= (- pt 1) (point))
+	(search-backward "/" (minibuffer-prompt-end) t))
+    (forward-char)
+    (delete-region (point) pt)))

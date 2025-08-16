@@ -84,3 +84,6 @@
  "C-z ; w u" pw-git-pull
  "C-z ; w p" pw-git-push
  "C-z /" compile)
+
+ ; Delete up to / in filepath
+(define-key minibuffer-local-map (kbd "C-<backspace>") 'backward-kill-filepath)
