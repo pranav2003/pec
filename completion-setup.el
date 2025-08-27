@@ -37,7 +37,9 @@
   :init
   (corfu-echo-mode)
   (corfu-history-mode)
-  (global-corfu-mode))
+  (global-corfu-mode)
+  :config
+  (keymap-unset corfu-map "RET"))
 
 (setq
  completion-cycle-threshold 1

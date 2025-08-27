@@ -7,7 +7,7 @@
 
 (add-hook 'prog-mode-hook
 	  (lambda ()
-	    (setq-local completion-at-point-functions '(cape-dabbrev cape-keyword))
+	    (setq-local completion-at-point-functions '(cape-dabbrev cape-keyword cape-file))
 	    (setq captain-predicate
 		  (lambda () (nth 8 (syntax-ppss (point)))))
 	    (display-line-numbers-mode 1)))
