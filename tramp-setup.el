@@ -1,2 +1,1 @@
-(setq tramp-remote-shell "/bin/sh")
-(setq tramp-remote-shell-args '("-c"))
+(setq vterm-tramp-shells '((t login-shell) ("docker" "/bin/sh")))
