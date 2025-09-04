@@ -8,7 +8,7 @@
 
 ;; Orderless: brilliant completion style that I use everywhere
 (use-package orderless
-  :config (setq completion-styles '(orderless hotfuzz basic)))
+  :config (setq completion-styles '(orderless basic)))
 
 (setq
  completion-ignore-case t
@@ -27,8 +27,7 @@
   (corfu-auto-prefix 2)
   (corfu-cycle t)              ;; Enable cycling for `corfu-next/previous'
   (corfu-echo-delay 0.25)
-  (corfu-separator ?\s)        ;; Orderless field separator
-  (corfu-quit-at-boundary nil) ;; Never quit at completion boundary
+  (corfu-quit-at-boundary 'separator) ;; Never quit at completion boundary
   (corfu-quit-no-match t)      ;; Never quit, even if there is no match
   (corfu-preview-current nil)  ;; Disable current candidate preview
   (corfu-preselect 'first)     ;; Preselect the prompt
