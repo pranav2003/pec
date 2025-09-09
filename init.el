@@ -77,6 +77,7 @@
 	      "python-setup.el"
 	      "ocaml-setup.el"
 	      "rust-setup.el"
+	      "shell-setup.el"
 
 	      ;; * Documents
 	      "pdf-setup.el"

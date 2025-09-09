@@ -72,6 +72,7 @@
  "C-z u d" update-directory-index
  "C-z u g" update-git-repos
  "C-z w" whitespace-mode
+ "C-z C-z" vterm--self-insert
  "C-z {" beginning-of-defun
  "C-z }" end-of-defun
  "C-z #" goto-line-num-at-point-in-recent-file
