@@ -32,8 +32,7 @@
 (when-linux (set-face-attribute 'default nil :height 180))
 
 ;; Use the wonderful "Aporetic" font
-(when-mac (set-face-attribute 'default nil :family "Aporetic Sans Mono"))
-(when-linux (set-face-attribute 'default nil :family "Source Code Pro"))
+(set-face-attribute 'default nil :family "Aporetic Sans Mono")
 
 ;; Truncate long lines (wrapping causes too much visual interference)
 (set-default 'truncate-lines t)
