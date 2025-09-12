@@ -1,5 +1,5 @@
 ;;;  -*- lexical-binding: t; -*-
-;;; package-setup.el -- Package management
+;;; tramp-setup.el -- Setup for TRAMP
 ;;;
 
 (setq vterm-tramp-shells '((t login-shell) ("docker" "/bin/sh")))
