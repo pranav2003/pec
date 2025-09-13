@@ -19,8 +19,7 @@
 
 (require-theme 'doric-themes)
 
-(when-mac (load-theme 'ef-dream t))
-(when-linux (load-theme 'ef-maris-dark t))
+(load-theme 'ef-maris-dark t)
 
 ;; Ensure fullscreen at startup
 (when-mac
