@@ -1,7 +1,6 @@
 # Pec: Portable Emacs Configuration
 
-I created this project to make it easy for me to install my Emacs
-configuration on new systems.
+Fork of emfred-dot-com's Emacs configuration.
 
 # Installation
 
