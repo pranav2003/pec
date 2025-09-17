@@ -10,4 +10,4 @@
                `(,(concat "\\`" hostname "\\'") "root" "/sshx:%h:")))
 
 (when-mac (add-to-list 'tramp-default-proxies-alist
-		       ("\\`sisyphus\\'" "\\`root\\'" "/sshx:%h:")))
+		       '("\\`sisyphus\\'" "\\`root\\'" "/sshx:%h:")))

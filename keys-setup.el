@@ -89,7 +89,7 @@
  ; Delete up to / in filepath
 (defun my-backward-kill-filepath-minibuffer-setup ()
   "Bind `backward-kill-filepath` in the current find-file minibuffer only."
-  (when (member this-command '(find-file find-alternate-file dired))
+  (when (member this-command '(find-file find-file-other-window find-alternate-file dired))
     (let ((map (copy-keymap (current-local-map))))
       (define-key map (kbd "C-<backspace>") #'backward-kill-filepath)
       (use-local-map map))))
