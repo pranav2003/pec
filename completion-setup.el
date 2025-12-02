@@ -27,7 +27,7 @@
   (corfu-auto-prefix 2)
   (corfu-cycle t)              ;; Enable cycling for `corfu-next/previous'
   (corfu-echo-delay 0.25)
-  (corfu-quit-at-boundary 'separator) ;; Never quit at completion boundary
+  (corfu-quit-at-boundary 'separator) ;; Quit at completion boundary
   (corfu-quit-no-match t)      ;; Never quit, even if there is no match
   (corfu-preview-current nil)  ;; Disable current candidate preview
   (corfu-preselect 'first)     ;; Preselect the prompt
@@ -43,12 +43,3 @@
 (setq
  completion-cycle-threshold 1
  tab-always-indent 'complete)
-
-;; Pabbrev: a great simple completion solution.
-;; Using Corfu at the moment but keeping
-;; this here in case I switch back.
-;; (use-package pabbrev
-;;   :ensure t
-;;   :config
-;;   (setq pabbrev-idle-timer-verbose nil)
-;;   (global-pabbrev-mode 1))

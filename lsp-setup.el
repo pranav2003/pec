@@ -11,6 +11,9 @@
 	  (lambda ()
 	    (local-set-key (kbd "M-.") 'lsp-find-definition)))
 
+;; For error checking
 (use-package flycheck
   :ensure t
   :defer t)
+
+(setq lsp-completion-provider :none)  ;; don’t try to configure company

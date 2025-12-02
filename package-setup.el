@@ -6,9 +6,16 @@
 
 (add-to-list 'package-archives
              '("melpa-stable" .
-	       "https://stable.melpa.org/packages/"))
+	       "https://stable.melpa.org/packages/") t)
+
+(add-to-list 'package-archives
+	     '("melpa" . "https://melpa.org/packages/") t)
 
 (setq package-install-upgrade-builtin t)
+
+(setq package-archive-priorities
+      '(("gnu" . 10)
+	("melpa-stable" . 5)))
 
 (package-initialize)
 
@@ -68,9 +75,6 @@
   :defer t
   :commands dynamic-spaces-mode)
 
-;; (use-package eat
-;;   :hook (eshell-mode . eat-eshell-mode))
-
 (use-package embark
   :bind (("C-." . embark-act)))
 
@@ -81,7 +85,6 @@
   :bind ("C-=" . er/expand-region))
 
 (use-package filladapt
-  :ensure t
   :config
   (setq-default filladapt-mode t))
 
@@ -167,13 +170,6 @@
   :bind (:map vertico-map
               ("M-DEL" . vertico-directory-delete-word))
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
-
-(use-package vterm
-  :demand t
-  :load-path "~/repos/emacs-libvterm/"
-  :config
-  (setq vterm-timer-delay nil)
-  (setq vterm-max-scrollback 10000))
 
 (use-package which-key
   :config

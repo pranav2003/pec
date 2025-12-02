@@ -2,7 +2,18 @@
 ;;; python-setup.el -- Configurations for Python3
 ;;;
 
-(when-mac
- (add-hook 'python-mode-hook
-	   (lambda ()
-	     (setq python-shell-exec-path '("/usr/local/bin")))))
+(use-package lsp-pyright
+  :defer t
+  :custom (lsp-pyright-langserver-command "pyright"))
+
+(use-package pyvenv
+  :defer t)
+
+(use-package py-vterm-interaction
+  :config
+  (setq-default py-vterm-interaction-repl-program "python3"))
+
+(add-hook 'python-mode-hook
+	  (lambda ()
+	    (lsp-deferred)
+	    (py-vterm-interaction-mode)))

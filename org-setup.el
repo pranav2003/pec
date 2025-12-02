@@ -14,3 +14,13 @@
 		  (lambda () (not (org-in-src-block-p)))
 		  org-image-max-width 50)
 	    (local-set-key (kbd "C-c h") 'consult-org-heading)))
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t)))
+
+;; Structure templates
+(require 'org-tempo)
+(add-to-list 'org-structure-template-alist '("sp" . "src python"))
+
+(setq org-confirm-babel-evaluate nil)
