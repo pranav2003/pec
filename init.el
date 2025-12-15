@@ -72,7 +72,9 @@
 	      ;; * * programming
 	      "programming-setup.el"
 	      "c-family-setup.el"
+	      "csharp-setup.el"
 	      "d-setup.el"
+	      "go-setup.el"
 	      "html-setup.el"
 	      "js-setup.el"
 	      "lisp-setup.el"
