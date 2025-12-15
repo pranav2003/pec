@@ -77,13 +77,13 @@
 	      "js-setup.el"
 	      "lisp-setup.el"
 	      "lsp-setup.el"
-	      "python-setup.el"
 	      "ocaml-setup.el"
+	      "python-setup.el"
 	      "rust-setup.el"
 	      "shell-setup.el"
 
 	      ;; * Documents
-	      "pdf-setup.el"
+	      "documents-setup.el"
 
 	      ;; * Tramp
 	      "tramp-setup.el"))

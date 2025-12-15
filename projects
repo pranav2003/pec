@@ -1,3 +1,5 @@
 ;;; -*- lisp-data -*-
-(("/home/pranav/.emacs.d/elpa/accent/")
+(("/Users/pranav/.emacs.d/elpa/ein/") ("/Users/pranav/.emacs.d/")
+ ("/Users/pranav/.emacs.d/elpa/vterm/")
+ ("/home/pranav/.emacs.d/elpa/accent/")
  ("/home/pranav/.emacs.d/elpa/vc-use-package/"))

@@ -50,7 +50,7 @@
  "C-z C-x" decr-num-at-point
  "C-z SPC" consult-recent-file
  "C-z S-SPC" consult-recent-file-other-window
- "C-z )" ace-swap-window
+ "C-z )" window-swap-states
  "C-z [" find-file-at-point
  "C-z b" consult-buffer
  "C-z c" copy-line

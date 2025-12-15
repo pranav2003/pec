@@ -25,31 +25,6 @@
   (package-vc-install "https://github.com/slotThe/vc-use-package"))
 (require 'vc-use-package)
 
-(use-package accent
-  :vc (:fetcher github :repo eliascotto/accent)
-  :bind ("C-x M-a" . accent-menu))
-
-(use-package ace-window
-  :defer t)
-
-(use-package activities
-  :init
-  (activities-mode)
-  (activities-tabs-mode)
-  ;; Prevent `edebug' default bindings from interfering.
-  (setq edebug-inhibit-emacs-lisp-mode-bindings t)
-  :bind
-  (("C-z a n" . activities-new)
-   ("C-z a d" . activities-define)
-   ("C-z a a" . activities-resume)
-   ("C-z a s" . activities-suspend)
-   ("C-z a k" . activities-kill)
-   ("C-z a SPC" . activities-switch)
-   ("C-z a b" . activities-switch-buffer)
-   ("C-z a g" . activities-revert)
-   ("C-z a l" . activities-list)))
-
-
 (use-package beginend
   :demand t
   :config
@@ -62,14 +37,6 @@
   :config
   (setq register-preview-delay 0.8
         register-preview-function #'consult-register-format))
-
-(use-package csv-mode
-  :defer t)
-
-(use-package dired-hide-dotfiles
-  :hook (dired-after-readin . dired-hide-dotfiles--hide)
-  :bind (:map dired-mode-map
-	      ("," . dired-hide-dotfiles-mode)))
 
 (use-package dynamic-spaces
   :defer t
@@ -88,18 +55,7 @@
   :config
   (setq-default filladapt-mode t))
 
-(use-package geiser
-  :config
-  (setq geiser-active-implementations '(gambit)))
-
-(use-package geiser-gambit)
-
-(use-package geiser-racket)
-
 (use-package git-gutter-fringe)
-
-(use-package haskell-mode
-  :defer t)
 
 (use-package ido-yes-or-no
   :config
@@ -114,18 +70,12 @@
   :config
   (marginalia-mode 1))
 
-(use-package markdown-mode
-  :defer t)
-
 (use-package multiple-cursors
   :bind (("C-<" . mc/mmlte--up)
 	 ("C->" . mc/mmlte--down)
 	 ("C-M->" . mc/mark-next-like-this)
 	 ("C-M-<" . mc/mark-previous-like-this)
 	 ("C-c C->" . mc/mark-all-dwim)))
-
-(use-package pdf-tools
-  :hook (doc-view-mode . pdf-tools-install))
 
 (use-package proof-general
   :config
