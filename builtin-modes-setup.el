@@ -13,6 +13,7 @@
 (display-battery-mode 1)
 (electric-pair-mode 1)
 (global-auto-revert-mode 0)
+(global-display-line-numbers-mode 1)
 (recentf-mode 1)
 (savehist-mode 1)
 (show-paren-mode 1)

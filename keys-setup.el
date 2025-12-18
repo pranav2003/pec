@@ -84,7 +84,9 @@
  "C-z ; w S" pw-serve-disable-fast-render
  "C-z ; w u" pw-git-pull
  "C-z ; w p" pw-git-push
- "C-z /" compile)
+ "C-z /" compile
+ "C-z e i" eglot-inlay-hints-mode
+ "C-z e l" consult-flymake)
 
  ; Delete up to / in filepath
 (defun my-backward-kill-filepath-minibuffer-setup ()

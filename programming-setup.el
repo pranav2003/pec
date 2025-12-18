@@ -9,7 +9,6 @@
 	  (lambda ()
 	    (setq-local completion-at-point-functions '(cape-dabbrev cape-keyword cape-file))
 	    (setq captain-predicate
-		  (lambda () (nth 8 (syntax-ppss (point)))))
-	    (display-line-numbers-mode 1)))
+		  (lambda () (nth 8 (syntax-ppss (point)))))))
 
 (add-to-list 'auto-mode-alist '("\\.pl\\'" . prolog-mode))

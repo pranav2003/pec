@@ -27,18 +27,16 @@
   (corfu-auto-prefix 2)
   (corfu-cycle t)              ;; Enable cycling for `corfu-next/previous'
   (corfu-echo-delay 0.25)
-  (corfu-quit-at-boundary 'separator) ;; Quit at completion boundary
-  (corfu-quit-no-match t)      ;; Never quit, even if there is no match
-  (corfu-preview-current nil)  ;; Disable current candidate preview
+  (corfu-quit-at-boundary nil) ;; Don't quit at completion boundary
+  (corfu-quit-no-match t)      ;; Quit if there is no match
+  (corfu-preview-current t)  ;; Disable current candidate preview
   (corfu-preselect 'first)     ;; Preselect the prompt
   (corfu-on-exact-match nil)   ;; Configure handling of exact matches
   (corfu-scroll-margin 5)      ;; Use scroll margin
   :init
   (corfu-echo-mode)
   (corfu-history-mode)
-  (global-corfu-mode)
-  :config
-  (keymap-unset corfu-map "RET"))
+  (global-corfu-mode))
 
 (setq
  completion-cycle-threshold 1

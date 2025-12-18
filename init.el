@@ -81,6 +81,7 @@
 	      "lsp-setup.el"
 	      "ocaml-setup.el"
 	      "python-setup.el"
+	      "qml-setup.el"
 	      "rust-setup.el"
 	      "shell-setup.el"
 

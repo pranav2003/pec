@@ -1,9 +1,7 @@
 ;;;  -*- lexical-binding: t; -*-
-;;; c-family-setup.el -- Configurations for C-like languages
+;;; csharp-setup.el -- Configurations for C#
 ;;;
 
 (add-hook 'csharp-mode-hook
 	  (lambda ()
 	    (setq indent-tabs-mode nil)))
-
-(when-mac (setenv "CPLUS_INCLUDE_PATH" "/opt/homebrew/include"))
