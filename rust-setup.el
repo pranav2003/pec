@@ -3,5 +3,4 @@
 ;;;
 
 (use-package rustic
-  :ensure t
   :defer t)

@@ -2,10 +2,12 @@
 ;;; markdown-setup.el -- Customizations for writing Markdown
 ;;;
 
+(use-package markdown-mode
+  :defer t)
+
 (setq markdown-fontify-code-blocks-natively t)
 
 (use-package adaptive-wrap
-  :ensure t
   :commands adaptive-wrap-prefix-mode)
 
 (add-hook 'markdown-mode-hook

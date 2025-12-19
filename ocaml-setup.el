@@ -7,8 +7,7 @@
 
 (add-to-list 'load-path "/Users/ericfrederickson/.opam/default/share/emacs/site-lisp")
 
-(use-package ocp-indent
-  :ensure t)
+(use-package ocp-indent)
 
 (require 'ocp-indent)
 

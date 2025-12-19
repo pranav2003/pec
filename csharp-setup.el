@@ -4,4 +4,5 @@
 
 (add-hook 'csharp-mode-hook
 	  (lambda ()
-	    (setq indent-tabs-mode nil)))
+	    (setq indent-tabs-mode nil)
+	    (eglot-ensure)))
