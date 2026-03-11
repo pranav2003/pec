@@ -21,15 +21,25 @@
 home directory path with a `~/'."
   (string-replace (expand-file-name "~/") "~/" path))
 
+(defmacro maybe-in-project (body)
+  "If we're in a project, set the current working directory to the root
+directory of that project."
+  `(let ((proj (project-current nil)))
+     (let ((default-directory (if proj
+				  (project-root proj)
+				default-directory)))
+       ,body)))
+
 (defun cwd ()
   "Get the current working directory. Implemented as `pwd' with the
-returned string cleaned up."
+returned string cleaned up, and with support for `project.el'."
   (let ((inhibit-message t))
-    (mapconcat #'identity
-	       (cdr (split-string
-		     (collapse-tilde (pwd))
-		     " "))
-	       " ")))
+    (maybe-in-project
+     (mapconcat #'identity
+		(cdr (split-string
+		      (collapse-tilde (pwd))
+		      " "))
+		" "))))
 
 (defun buffer-names-matching-regexp (regexp)
   "Return a list of buffers whose names match `regexp'."
