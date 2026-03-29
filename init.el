@@ -71,6 +71,7 @@
 	      "writing-setup.el"
 	      "zettelkasten-setup.el"
 	      "poem-setup.el"
+	      "books-setup.el"
 
 	      ;; * * markup
 	      "markdown-setup.el"
