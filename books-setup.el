@@ -4,4 +4,6 @@
 
 (use-package nov
   :ensure t
-  :mode ("\\.epub\\'" . nov-mode))
+  :mode ("\\.epub\\'" . nov-mode)
+  :custom (nov-text-width 85)
+  :hook (nov-mode . olivetti-mode))
