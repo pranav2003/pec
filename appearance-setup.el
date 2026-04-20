@@ -28,7 +28,7 @@
 
 ;; Bigger font
 (when-mac (set-face-attribute 'default nil :height 200))
-(when-linux (set-face-attribute 'default nil :height 180))
+(when-linux (set-face-attribute 'default nil :height 160))
 
 ;; Use the wonderful "Aporetic" font
 (set-face-attribute 'default nil :family "Aporetic Sans Mono")

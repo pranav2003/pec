@@ -78,7 +78,6 @@
 	      "html-setup.el"
 	      "js-setup.el"
 	      "lisp-setup.el"
-	      "lsp-setup.el"
 	      "ocaml-setup.el"
 	      "python-setup.el"
 	      "qml-setup.el"

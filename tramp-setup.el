@@ -2,7 +2,7 @@
 ;;; tramp-setup.el -- Setup for TRAMP
 ;;;
 
-(setq vterm-tramp-shells '((t login-shell) ("docker" "/bin/sh")))
+(setq vterm-tramp-shells '((t login-shell) ("docker" "/bin/bash")))
 
 ;; Add ssh as proxy for sudo for the specified hostnames
 (dolist (hostname '("lightsail"))
