@@ -33,3 +33,7 @@
   :config
   (keybinds "C-z w" ace-window
             "C-z C-w" ace-swap-window))
+
+;; Easy "kill buffer and window" binding
+(keybind "C-z k" (==> (kill-buffer)
+		      (delete-window)))
