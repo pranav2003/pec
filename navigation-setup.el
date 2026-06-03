@@ -13,6 +13,19 @@
   :config
   (beginend-global-mode 1))
 
+;; Bookmarks
+(use-package bookmark
+  :ensure nil
+  :config
+  ;; Emacs 29 displays a bookmark icon on the fringe.  Many people
+  ;; have asked me what that thing is.  I also think it is confusing.
+  (setq bookmark-fringe-mark nil)
+  ;; Write changes to the bookmark file as soon as 1 modification is
+  ;; made (addition or deletion).  Otherwise Emacs will only save the
+  ;; bookmarks when it closes, which may never happen properly
+  ;; (e.g. power failure).
+  (setq bookmark-save-flag 1))
+
 (use-package ffap
   :config
   (keybind "C-z [" find-file-at-point))
