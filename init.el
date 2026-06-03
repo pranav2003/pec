@@ -94,6 +94,7 @@
 	      "c-family-setup.el"
 	      "d-setup.el"
 	      "elisp-setup.el"
+	      "go-setup.el"
 	      "haskell-setup.el"
 	      "html-setup.el"
 	      "js-setup.el"
