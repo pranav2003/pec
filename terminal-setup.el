@@ -3,10 +3,10 @@
 ;;;
 
 ;; Use the excellent `vterm' terminal emulator. Fetch it from Github
-;; since it's not on `melpa-stable'.
+;; since it's not on `elpa' or `melpa'.
 (use-package vterm
   :demand t
-  :vc (:fetcher github :repo akermu/emacs-libvterm)
+  :vc (:url "https://github.com/akermu/emacs-libvterm" :rev :newest)
   :config
   (setq vterm-timer-delay nil
 	vterm-max-scrollback 10000)
