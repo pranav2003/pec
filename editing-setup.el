@@ -2,6 +2,12 @@
 ;;; editing-setup.el -- Ways to swiftly edit text
 ;;;
 
+;; Delete the selected text when inserting new text
+(use-package delsel
+  :ensure nil
+  :config
+  (delete-selection-mode 1))
+
 (use-package dynamic-spaces
   :defer t
   :commands dynamic-spaces-mode)
