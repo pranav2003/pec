@@ -24,6 +24,17 @@
       message-kill-buffer-on-exit t)
      :bind (("C-z M" . gnus)))
 
+   (use-package shr
+     :ensure nil
+     :config
+     ;; t is bad for accessibility and generally awkward for HTML email
+     ;; (especially with dark themes).
+     (setq shr-use-colors nil)
+     ;; This option should not exist, given `variable-pitch-mode'.
+     ;; Furthermore, its default value runs counter to almost everything
+     ;; else in Emacs which just uses the `default' face.
+     (setq shr-use-fonts nil))
+
    (use-package smtpmail
      :config
      (setq smtpmail-smtp-server "smtp.gmail.com"
