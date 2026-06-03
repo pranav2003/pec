@@ -14,7 +14,8 @@
 
   (add-hook 'dired-mode-hook
 	    (=> (keymap-set dired-mode-map (kbd ";")
-			    'dired-sysopen-file-at-point))))
+			    'dired-sysopen-file-at-point)
+		(dired-hide-details-mode))))
 
 (use-package dired-hide-dotfiles
   :hook (dired-after-readin . dired-hide-dotfiles--hide)
