@@ -21,6 +21,9 @@
 	      ;; * Navigation
 	      "navigation-setup.el"
 
+	      ;; * Searching
+	      "search-setup.el"
+
 	      ;; * Editing
 	      "editing-setup.el"
 
