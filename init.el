@@ -56,6 +56,9 @@
 	      ;; * Email
 	      "mail-setup.el"
 
+	      ;; * Calendar
+	      "calendar-setup.el"
+
 	      ;; * Terminal
 	      "terminal-setup.el"
 
