@@ -14,8 +14,8 @@
    "C-z t" ef-themes-select
    "C-z C-t" ef-themes-toggle)
 
-  (when-mac (setq ef-themes-to-toggle
-		  '(ef-day ef-symbiosis))))
+  (setq ef-themes-to-toggle
+	'(ef-reverie ef-dream)))
 
 (require-theme 'ef-themes)
 
@@ -23,8 +23,7 @@
 
 (require-theme 'doric-themes)
 
-(when-mac (load-theme 'ef-symbiosis t))
-(when-linux (load-theme 'ef-winter t))
+(load-theme (cadr ef-themes-to-toggle) t)
 
 ;; Ensure fullscreen at startup
 (when-mac
