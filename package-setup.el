@@ -4,9 +4,15 @@
 
 (require 'package)
 
-(add-to-list 'package-archives
-             '("melpa-stable" .
-	       "https://stable.melpa.org/packages/"))
+(setq package-archives
+      '(("elpa" . "https://elpa.gnu.org/packages/")
+        ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+        ("melpa" . "https://melpa.org/packages/")))
+
+(setq package-archive-priorities
+      '(("elpa" . 3)
+        ("nongnu" . 2)
+        ("melpa" . 1)))
 
 (keybind "C-z p" package-list-packages)
 
