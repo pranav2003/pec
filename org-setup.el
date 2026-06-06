@@ -3,8 +3,13 @@
 ;;;
 
 (use-package org
-  :config
+  :bind
+  ("C-z a" . org-agenda)
 
+  :custom
+  (org-goto-auto-isearch nil)
+
+  :config
   ;; Load the `org-mode' templates for the built-in `tempo' templating
   ;; package. This provides a menu of snippets of the form "<X" where
   ;; "X" is some letter, and all of these snippets expand to org block
@@ -37,3 +42,7 @@
 (use-package org-bullets
   :after org
   :hook (org-mode . org-bullets-mode))
+
+(keybind "C-z TAB"
+	 (==> (find-file
+	       personal/todo-list-for-work)))
