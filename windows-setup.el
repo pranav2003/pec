@@ -31,8 +31,8 @@
 
 (use-package ace-window
   :config
-  (keybinds "C-z w" ace-window
-            "C-z C-w" ace-swap-window))
+  (keybinds "C-z C-w" ace-window
+            "C-z M-w" ace-swap-window))
 
 ;; Easy "kill buffer and window" binding
 (keybind "C-z k" (==> (kill-buffer)
