@@ -31,8 +31,7 @@
    (toggle-frame-fullscreen)))
 
 ;; Bigger font
-(when-mac (set-face-attribute 'default nil :height 200))
-(when-linux (set-face-attribute 'default nil :height 180))
+(set-face-attribute 'default nil :height 180)
 
 ;; Easy command to change font size
 (defun set-font-height-in-pts (pts)
