@@ -13,17 +13,23 @@
   (define-key vterm-mode-map (kbd "C-z") nil)
   (define-key vterm-mode-map (kbd "C-z C-z") #'vterm--self-insert))
 
-;; Some helper functions that will be used in the definitions of the
-;; key-bound vterm spawning function:
+;; The Elisp code below implements an interface to making and managing
+;; `vterm' buffers that I've called `vterm-session'.
+;;
+;; First, some helper functions that will be used in the definitions
+;; of the key-bound `vterm-session/*' functions:
 
 (defun collapse-tilde (path)
   "Un-expand the `~' character in a path, i.e. `string-replace' the full
 home directory path with a `~/'."
   (string-replace (expand-file-name "~/") "~/" path))
 
-(defmacro maybe-in-project (body)
+(defmacro projectify (body)
   "If we're in a project, set the current working directory to the root
-directory of that project."
+directory of that project. This \"projectifies\" the BODY making it
+think it's in the root of the project (if there is a project), which
+causes functions that look off of the current directory to have vision
+over the whole project tree"
   `(let ((proj (project-current nil)))
      (let ((default-directory (if proj
 				  (project-root proj)
@@ -32,9 +38,20 @@ directory of that project."
 
 (defun cwd ()
   "Get the current working directory. Implemented as `pwd' with the
-returned string cleaned up, and with support for `project.el'."
+returned string's tilde collapsed."
   (let ((inhibit-message t))
-    (maybe-in-project
+     (mapconcat #'identity
+		(cdr (split-string
+		      (collapse-tilde (pwd))
+		      " "))
+		" ")))
+
+(defun cwd-project ()
+  "Get the current working directory, or the directory of the current
+project (in the case that we're in a project). Implemented as `pwd' with
+the returned string's tilde collapsed."
+  (let ((inhibit-message t))
+    (projectify
      (mapconcat #'identity
 		(cdr (split-string
 		      (collapse-tilde (pwd))
@@ -52,19 +69,48 @@ returned string cleaned up, and with support for `project.el'."
 (defun vterm-session/go (dir &optional force-new)
   "Go to a `vterm' session for the directory DIR. If a session already
 exists for DIR, jump to it; else, create a new vterm instance in DIR.
-
 If FORCE-NEW is `t', then a new session will be created unconditionally
-(even if one already exists for DIR)."
-  (let ((vterm-buf-name (concat "*vterm* " dir)))
+(even if one already exists for DIR).
+
+In the case that DIR is subdirectory of a project, the following logic
+applies:
+
+- If a `vterm' session already exists for DIR, then jump to it. Else,
+- If a `vterm' session already exists for the project root directory,
+  then jump to that. Else,
+- Create a new `vterm' session for the project root directory.
+│
+└──> (This raises the question of how to create a new vterm instance
+for DIR itself -- that is done by passing FORCE-NEW as `t'.)"
+  (let ((default-directory dir)
+	(vterm-buf-name (concat "*vterm* " dir)))
     (if (and (get-buffer vterm-buf-name) (not force-new))
 	(pop-to-buffer vterm-buf-name)
-      (let ((default-directory dir))
-	(vterm-other-window vterm-buf-name)))))
+      (let ((project-dir (cwd-project)))
+	(if (and (not (equal dir project-dir))
+		 (not force-new))
+	    (let ((vterm-proj-buf-name (concat "*vterm* " project-dir)))
+	      (if (get-buffer vterm-proj-buf-name)
+		  (pop-to-buffer vterm-proj-buf-name)
+		(vterm-other-window vterm-proj-buf-name)))
+	  (vterm-other-window vterm-buf-name))))))
+
+(defun vterm-session/in-vterm-buffer-for-dir-p (dir)
+  "Check whether we're currently in a `vterm' session buffer for the
+directory DIR."
+  (string-match
+   (rx string-start
+       "*vterm* "
+       (literal (collapse-tilde dir))
+       (optional " <"
+		 (one-or-more digit)
+		 ">"))
+   (buffer-name (current-buffer))))
 
 ;; Now the main event: wrappers around `vterm' which enable:
 ;; - creating new sessions with descriptive names
 ;;   (`vterm-session/create-*')
-;; - switching to existsing sessions by way of a completion menu
+;; - switching to existsing sessions by way of a completing-read
 ;;   (`vterm-session/select')
 
 (defun vterm-session/create-in-current-directory (arg)
@@ -77,7 +123,10 @@ If a prefix argument is passed, then a new session will be created
 unconditionally (even if one already exists for the current directory)."
   (interactive "P")
   (let ((current-directory (cwd)))
-    (vterm-session/go current-directory arg)))
+    (vterm-session/go current-directory
+		      (or arg
+			  (vterm-session/in-vterm-buffer-for-dir-p
+			   current-directory)))))
 
 (defun vterm-session/create-in-chosen-directory (arg)
   "Prompt for a directory in which to create a new, or jump to an existing,
@@ -98,7 +147,13 @@ candidate.
 If a prefix argument is passed, then the jump will happen in the current
 window, instead of popping to another window"
   (interactive "P")
-  (let ((vterm-buffer-names (buffer-names-matching-regexp "\*vterm\*")))
+  (let ((vterm-buffer-names (buffer-names-matching-regexp
+			     (rx string-start
+				 "*vterm* "
+				 (one-or-more nonl)
+				 (optional " <"
+					   (one-or-more digit)
+					   ">")))))
     (if (not vterm-buffer-names)
 	(message "No vterm sessions to choose from.")
       (let ((buf-name (completing-read
