@@ -3,8 +3,9 @@
 ;;;
 
 (use-package calendar
-  :bind (:map calendar-mode-map
-              ("y" . calendar-yank-date))
+  :bind (("C-z c" . calendar)
+	 (:map calendar-mode-map
+               ("y" . calendar-yank-date)))
   :config
   (defun calendar-yank-date ()
     "Copy the date at point in mm-dd-yyyy format to the kill ring."
