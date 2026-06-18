@@ -59,6 +59,19 @@
 ;; Truncate long lines (wrapping causes too much visual interference)
 (set-default 'truncate-lines t)
 
+;; Use `minions' to collapse all minor mode lighters into a single
+;; meta-lighter (which yields a menu when clicked, in which the hidden
+;; minor modes are visible). Then, go even further by setting the
+;; character of that meta-lighter to the empty string, so that it's
+;; not visible at all on the mode line.
+;;
+;; The rationale behind this is that I don't want minor mode lighters
+;; taking up any space on the mode line. If I want to know which minor
+;; modes are active, I can check the relevant variables via "C-h v".
+(use-package minions
+  :init (setq minions-mode-line-lighter "")
+  :config (minions-mode 1))
+
 ;; Show the current time in the modeline
 (display-time)
 
