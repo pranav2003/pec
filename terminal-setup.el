@@ -92,7 +92,7 @@ for DIR itself -- that is done by passing FORCE-NEW as `t'.)"
 	    (let ((vterm-proj-buf-name (concat "*vterm* " project-dir)))
 	      (if (get-buffer vterm-proj-buf-name)
 		  (pop-to-buffer vterm-proj-buf-name)
-		(vterm-other-window vterm-proj-buf-name)))
+		(projectify (vterm-other-window vterm-proj-buf-name))))
 	  (vterm-other-window vterm-buf-name))))))
 
 (defun vterm-session/in-vterm-buffer-for-dir-p (dir)
