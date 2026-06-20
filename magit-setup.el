@@ -8,3 +8,6 @@
   (keymap-set magit-section-mode-map
 	      "C-<tab>" #'other-window)
   (keybind "C-x v c" magit-clone))
+
+(use-package forge
+  :after magit)
