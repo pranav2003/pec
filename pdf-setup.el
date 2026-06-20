@@ -2,11 +2,9 @@
 ;;; pdf-setup.el -- Setup for viewing PDF documents
 ;;;
 
-(use-package pdf-tools
-  :ensure t
-  :hook (doc-view-mode . pdf-tools-install))
-
-(add-hook 'pdf-view-mode-hook
-	  (=> (keybinds-local
-	       "j" pdf-view-next-line-or-next-page
-	       "k" pdf-view-previous-line-or-previous-page)))
+(use-package doc-view
+  :config
+  (setq doc-view-resolution 180
+        doc-view-continuous t
+        doc-view-cache-directory
+        (expand-file-name "doc-view/" user-emacs-directory)))
