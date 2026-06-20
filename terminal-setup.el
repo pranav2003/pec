@@ -26,9 +26,9 @@ home directory path with a `~/'."
 
 (defmacro projectify (body)
   "If we're in a project, set the current working directory to the root
-directory of that project. This \"projectifies\" the BODY making it
+directory of that project. This \"projectifies\" the BODY by making it
 think it's in the root of the project (if there is a project), which
-causes functions that look off of the current directory to have vision
+causes functions that look out from the current directory to have vision
 over the whole project tree"
   `(let ((proj (project-current nil)))
      (let ((default-directory (if proj
@@ -47,9 +47,9 @@ returned string's tilde collapsed."
 		" ")))
 
 (defun cwd-project ()
-  "Get the current working directory, or the directory of the current
-project (in the case that we're in a project). Implemented as `pwd' with
-the returned string's tilde collapsed."
+  "Get the current working directory, or the root directory of the
+current project (in the case that we're in a project). Implemented as
+`pwd' with the returned string's tilde collapsed."
   (let ((inhibit-message t))
     (projectify
      (mapconcat #'identity
@@ -68,7 +68,7 @@ the returned string's tilde collapsed."
 
 (defun vterm-session/go (dir &optional force-new)
   "Go to a `vterm' session for the directory DIR. If a session already
-exists for DIR, jump to it; else, create a new vterm instance in DIR.
+exists for DIR, jump to it; else, create a new vterm session in DIR.
 If FORCE-NEW is `t', then a new session will be created unconditionally
 (even if one already exists for DIR).
 
@@ -115,9 +115,9 @@ directory DIR."
 
 (defun vterm-session/create-in-current-directory (arg)
   "Create or jump to a new `vterm' session in the current directory
-(that from which this command was executed). If one already exists there,
-then jump to it, else create a new session and name the buffer after
-the current directory.
+(meaning, that from which this command was executed). If one already
+exists there, then jump to it, else create a new session and name the
+buffer after the current directory.
 
 If a prefix argument is passed, then a new session will be created
 unconditionally (even if one already exists for the current directory)."
@@ -129,8 +129,8 @@ unconditionally (even if one already exists for the current directory)."
 			   current-directory)))))
 
 (defun vterm-session/create-in-chosen-directory (arg)
-  "Prompt for a directory in which to create a new, or jump to an existing,
-`vterm' session.
+  "Prompt for a directory in which to create a new, or jump to an
+existing, `vterm' session.
 
 If a prefix argument is passed, then a new session will be created
 unconditionally."
@@ -141,7 +141,7 @@ unconditionally."
 
 (defun vterm-session/select (arg)
   "Provide a completion menu of all active `vterm' sessions (whose names
-match the format used by `vterm-create'), and jump to the selected
+match the format used by `vterm-session/go'), and jump to the selected
 candidate.
 
 If a prefix argument is passed, then the jump will happen in the current
