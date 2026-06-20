@@ -69,6 +69,9 @@
 ;; modes are active, I can check the relevant variables via "C-h v".
 (use-package minions
   :init (setq minions-mode-line-lighter "")
+  :custom
+  (minions-prominent-modes
+   '(god-local-mode))
   :config (minions-mode 1))
 
 ;; Show the current time in the modeline
