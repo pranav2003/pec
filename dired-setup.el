@@ -2,6 +2,8 @@
 ;;; dired-setup.el -- configurations for Dired
 ;;;
 
+(require 'dired-x)
+
 (use-package dired-hide-dotfiles
   :hook (dired-after-readin . dired-hide-dotfiles--hide)
   :bind (:map dired-mode-map

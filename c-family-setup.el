@@ -16,7 +16,7 @@
 
 ;; Use CMakeLists.txt as the indicator for project directories for eglot
 (defun project-find-subroot-cmake (dir)
-  (let ((root (locate-dominating-file dir "CMakeLists.txt")))
+  (let ((root (find-outermost-dominating-file dir "CMakeLists.txt")))
     (when root
       (cons 'transient root))))
 

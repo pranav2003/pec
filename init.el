@@ -88,7 +88,10 @@
 	      "documents-setup.el"
 
 	      ;; * Tramp
-	      "tramp-setup.el"))
+	      "tramp-setup.el"
+
+              ;; * AI
+              "copilot-chat.el"))
 
 ;; M-x customize
 (setq custom-file (locate-user-emacs-file "custom-vars.el"))

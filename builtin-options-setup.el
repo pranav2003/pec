@@ -10,6 +10,8 @@
  backup-by-copying t
  backup-directory-alist `((".*" . ,backup-dir))
  bookmark-save-flag 1
+ browse-url-browser-function 'browse-url-generic
+ browse-url-generic-program "xdg-open"
  custom-file (locate-user-emacs-file "custom-vars.el")
  delete-old-versions t
  display-time-day-and-date nil
@@ -40,3 +42,6 @@
 (setq
  native-comp-async-report-warnings-errors 'silent
  native-compile-prune-cache t)
+
+(setq-default
+ indent-tabs-mode nil)

@@ -4,12 +4,11 @@
 
 (require 'package)
 
-(add-to-list 'package-archives
-             '("melpa-stable" .
-	       "https://stable.melpa.org/packages/") t)
-
-(add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/") t)
+(setq package-archives
+      '(("melpa-stable" . "https://raw.githubusercontent.com/d12frosted/elpa-mirror/master/stable-melpa/")
+        ("melpa" . "https://raw.githubusercontent.com/d12frosted/elpa-mirror/master/melpa/")
+        ("org"   . "https://raw.githubusercontent.com/d12frosted/elpa-mirror/master/org/")
+        ("gnu"   . "https://raw.githubusercontent.com/d12frosted/elpa-mirror/master/gnu/")))
 
 (setq package-install-upgrade-builtin t)
 
@@ -38,6 +37,10 @@
   (setq register-preview-delay 0.8
         register-preview-function #'consult-register-format))
 
+(use-package copilot-chat
+  :hook ((copilot-chat-mode . (lambda ()
+                                (read-only-mode 1)
+                                (visual-line-mode 1)))))
 (use-package dynamic-spaces
   :defer t
   :commands dynamic-spaces-mode)
@@ -50,6 +53,9 @@
 
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
+
+(use-package exec-path-from-shell
+  :config (when (exec-path-from-shell-initialize)))
 
 (use-package filladapt
   :config

@@ -92,20 +92,6 @@
   (interactive)
   (seek-to-num-and-change (lambda (x) (- x 1))))
 
-
-
-(defun copy-line (&optional arg)
-  (interactive "P")
-  (save-mark-and-excursion
-    (unless arg
-      (back-to-indentation))
-    (push-mark)
-    (move-end-of-line 1)
-    (activate-mark)
-    (kill-ring-save nil nil t)))
-
-
-
 (defun scroll-up-one ()
   (interactive)
   (scroll-up-command 1))
@@ -113,8 +99,6 @@
 (defun scroll-down-one ()
   (interactive)
   (scroll-down-command 1))
-
-
 
 (defun goto-line-num-at-point-in-recent-file ()
   "Modified version of `consult-recent-file' that jumps to line
@@ -226,3 +210,16 @@ Version 2016-07-13"
 	(search-backward "/" (minibuffer-prompt-end) t))
     (forward-char)
     (delete-region (point) pt)))
+
+(defun find-outermost-dominating-file (start-dir filename)
+  "Return the outermost path to FILENAME found above START-DIR, or nil."
+  (let ((current-dir (expand-file-name start-dir))
+        (last-found nil))
+    (while-let ((found (locate-dominating-file current-dir filename)))
+      (setq last-found found)
+      (let ((parent (file-name-directory (directory-file-name found))))
+        (if (or (not parent)
+                (string= (expand-file-name parent) (expand-file-name found)))
+            (setq current-dir nil) ; break loop
+          (setq current-dir parent))))
+    last-found))

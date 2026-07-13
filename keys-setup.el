@@ -53,7 +53,7 @@
  "C-z )" window-swap-states
  "C-z [" find-file-at-point
  "C-z b" consult-buffer
- "C-z c" copy-line
+ "C-z c" copilot-chat
  "C-z d" gd
  "C-z f" toggle-frame-fullscreen
  "C-z g" consult-ripgrep
