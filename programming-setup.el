@@ -9,6 +9,10 @@
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
 
+(use-package emacs
+  :config
+  (keybind "C-z /" compile))
+
 (use-package cape
   :bind ("M-/" . cape-dabbrev))
 

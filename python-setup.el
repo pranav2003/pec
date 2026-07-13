@@ -8,3 +8,7 @@
 
 (use-package pyvenv
   :defer t)
+
+(when-mac
+ (add-hook 'python-mode-hook
+	   (=> (setq python-shell-exec-path '("/usr/local/bin")))))

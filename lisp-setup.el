@@ -7,6 +7,3 @@
 
 (setq inferior-lisp-program (executable-find "sbcl"))
 
-(add-hook 'lisp-mode-hook
-	  (lambda ()
-	    (setq indent-tabs-mode t)))

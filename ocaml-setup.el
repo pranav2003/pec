@@ -5,9 +5,11 @@
 (use-package tuareg
   :defer t)
 
-(add-to-list 'load-path "/Users/ericfrederickson/.opam/default/share/emacs/site-lisp")
+(add-to-list 'load-path
+	     "/Users/ericfrederickson/.opam/default/share/emacs/site-lisp")
 
-(use-package ocp-indent)
+(use-package ocp-indent
+  :ensure t)
 
 (require 'ocp-indent)
 

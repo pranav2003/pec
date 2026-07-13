@@ -1,0 +1,92 @@
+;;;  -*- lexical-binding: t; -*-
+;;; navigation-setup.el -- Ways to get around
+;;;
+
+(use-package emacs
+  :config
+  (keybinds
+   "M-[" backward-sexp
+   "M-]" forward-sexp))
+
+(use-package beginend
+  :demand t
+  :config
+  (beginend-global-mode 1))
+
+;; Bookmarks
+(use-package bookmark
+  :ensure nil
+  :config
+  ;; Emacs 29 displays a bookmark icon on the fringe.  Many people
+  ;; have asked me what that thing is.  I also think it is confusing.
+  (setq bookmark-fringe-mark nil)
+  ;; Write changes to the bookmark file as soon as 1 modification is
+  ;; made (addition or deletion).  Otherwise Emacs will only save the
+  ;; bookmarks when it closes, which may never happen properly
+  ;; (e.g. power failure).
+  (setq bookmark-save-flag 1))
+
+(use-package ffap
+  :config
+  (keybind "C-z [" find-file-at-point))
+
+(use-package embark
+  :bind (("C-." . embark-act)))
+
+(use-package embark-consult
+  :after (embark consult))
+
+(use-package expand-region
+  :bind ("C-=" . er/expand-region))
+
+(use-package god-mode
+  :bind (("<escape>" . god-mode))
+  :config
+  (setq god-mode-enable-function-key-translation nil)
+  (add-to-list 'god-exempt-major-modes 'vterm-mode)
+  (add-to-list 'god-exempt-major-modes 'eat-semi-char-mode))
+
+;; Scrolling
+
+(defun scroll-up-one ()
+  (interactive)
+  (scroll-up-command 1))
+
+(defun scroll-down-one ()
+  (interactive)
+  (scroll-down-command 1))
+
+(keybinds
+ "M-n" scroll-up-one
+ "M-p" scroll-down-one)
+
+;; gd: Goto directory.
+;; (See `https://emfred.com/programs/gd' for context)
+
+(when-mac
+ (defun gd (&optional arg)
+   "Goto Directory"
+   (interactive "P")
+   (let ((target-dir (completing-read
+		      "Directory: "
+		      (with-temp-buffer
+			(insert-file-contents "~/.gd_idx")
+			(split-string (buffer-string) "\n" t)))))
+     (if arg
+	 (dired-other-window target-dir)
+       (dired (concat "~/" target-dir))))))
+
+(when-linux
+ (defun gd (&optional arg)
+   "Goto Directory"
+   (interactive "P")
+   (let ((target-dir (completing-read
+		      "Directory: "
+		      (with-temp-buffer
+			(insert-file-contents "/home/eric/.gd_idx")
+			(split-string (buffer-string) "\n" t)))))
+     (if arg
+	 (dired-other-window target-dir)
+       (dired target-dir)))))
+
+(keybind "C-z d" gd)

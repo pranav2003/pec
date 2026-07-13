@@ -1,6 +1,59 @@
 ;;;  -*- lexical-binding: t; -*-
-;;; package-setup.el -- Email config using notmuch.el
+;;; mail-setup.el -- Setup for reading and sending mail
 ;;;
+
+(when-mac
+ (progn
+   (setq user-mail-address personal/email-address)
+
+   (use-package gnus
+     :defer t
+     :config
+     (setq
+      gnus-select-method '(nnimap "imap.gmail.com")
+      gnus-search-use-parsed-queries t
+      gnus-extra-headers '(To Cc Keywords Gcc Newsgroups X-GM-LABELS)
+      gnus-always-read-dribble-file t
+      gnus-summary-line-format "%U%R%z%I%(%[ %-4,30f (%L) %]%) %s\n"
+      gnus-sum-thread-tree-indent "    "
+      gnus-sum-opening-bracket-adopted "{"
+      gnus-sum-closing-bracket-adopted "}"
+      gnus-thread-sort-functions '(gnus-thread-sort-by-number
+				   gnus-thread-sort-by-most-recent-date)
+      gnus-widen-article-window t
+      message-kill-buffer-on-exit t)
+     :bind (("C-z M" . gnus)))
+
+   (use-package shr
+     :ensure nil
+     :config
+     ;; t is bad for accessibility and generally awkward for HTML email
+     ;; (especially with dark themes).
+     (setq shr-use-colors nil)
+     ;; This option should not exist, given `variable-pitch-mode'.
+     ;; Furthermore, its default value runs counter to almost everything
+     ;; else in Emacs which just uses the `default' face.
+     (setq shr-use-fonts nil))
+
+   (use-package smtpmail
+     :config
+     (setq smtpmail-smtp-server "smtp.gmail.com"
+	   smtpmail-stream-type 'starttls
+	   smtpmail-auth-credentials "~/.authinfo"
+	   message-send-mail-function #'smtpmail-send-it)
+
+     (add-hook 'message-mode-hook
+	       (=> (setq smtpmail-smtp-service 587))))
+
+   (use-package ebdb
+     :after gnus
+     :config
+     (setq ebdb-complete-mail 'tab
+	   ebdb-completion-display-record t
+	   ebdb-mua-auto-update-p nil
+	   ebdb-mua-pop-up nil)
+     (ebdb-insinuate-gnus)
+     (ebdb-complete-enable))))
 
 (when-linux
  (progn

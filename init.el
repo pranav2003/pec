@@ -2,53 +2,56 @@
 ;;; init.el -- Emacs startup file
 ;;;
 
-;; Platform
-(defcustom myOs "linux"
-  "Variable used to guard settings that only work on Linux or MacOs"
-  :type 'string)
-
-(if (eq system-type 'darwin)
-    (setq myOs "mac"))
-
-(defmacro when-mac (then)
-  `(when (string-equal myOs "mac")
-     ,then))
-
-(defmacro when-linux (then)
-  `(when (string-equal myOs "linux")
-     ,then))
-
 (defun load-these (files)
   (mapcar
    (lambda (file)
      (load-file (locate-user-emacs-file file)))
    files))
 
-;; Free up the leader so that files loaded below can define keybinds
-;; off of it
-(global-unset-key (kbd "C-z"))
+(load-these '("setup-setup.el"
 
-(load-these '("package-setup.el"
-	      ;; ^ (load this first so that the remaining *-setup
-	      ;; files can declare their dependencies with
-	      ;; `use-package')
+	      ;; * Packages
+	      "package-setup.el"
+	      ;; ^ load this early so that later files
+	      ;;   are set up to declare dependencies.
 
-	      ;; * Custom functions
-	      "functions-setup.el"
+	      ;; * Basics
+	      "basics-setup.el"
+
+	      ;; * Navigation
+	      "navigation-setup.el"
+
+	      ;; * Searching
+	      "search-setup.el"
+
+	      ;; * Editing
+	      "editing-setup.el"
+
+	      ;; * Copying and Pasting
+	      ;;  (Killing and Yanking)
+	      "copy-paste-setup.el"
 
 	      ;; * Appearance
 	      "appearance-setup.el"
 	      "mode-line-setup.el"
 
+	      ;; * Visuals
+	      "visuals-setup.el"
+
 	      ;; * Builtins
 	      "builtin-modes-setup.el"
 	      "builtin-options-setup.el"
 	      "path-setup.el"
-	      "tabs-setup.el"
 	      "dired-setup.el"
 
-	      ;; * Keybinds
-	      "keys-setup.el"
+	      ;; * Buffers
+	      "buffers-setup.el"
+
+	      ;; * Windows
+	      "windows-setup.el"
+
+	      ;; * Tabs
+	      "tabs-setup.el"
 
 	      ;; * Completion
 	      "completion-setup.el"
@@ -56,59 +59,81 @@
 	      ;; * Email
 	      "mail-setup.el"
 
+	      ;; * Calendar
+	      "calendar-setup.el"
+
 	      ;; * Terminal
 	      "terminal-setup.el"
 
-	      ;; * Languages
-	      ;; * * natural
-	      "plaintext-setup.el"
-	      "notes-setup.el"
-	      "poem-setup.el"
-
-	      ;; * * markup
-	      "markdown-setup.el"
-	      "org-setup.el"
-
-	      ;; * * programming
-	      "programming-setup.el"
-	      "c-family-setup.el"
-	      "csharp-setup.el"
-	      "d-setup.el"
-	      "go-setup.el"
-	      "html-setup.el"
-	      "js-setup.el"
-	      "lisp-setup.el"
-	      "ocaml-setup.el"
-	      "python-setup.el"
-	      "qml-setup.el"
-	      "rust-setup.el"
+	      ;; * Shell
 	      "shell-setup.el"
-
-	      ;; * Documents
-	      "documents-setup.el"
 
 	      ;; * Tramp
 	      "tramp-setup.el"
 
-              ;; * AI
-              "copilot-chat.el"))
+	      ;; * Languages
+	      ;; * * natural
+	      "plaintext-setup.el"
+	      "writing-setup.el"
+	      "zettelkasten-setup.el"
+	      "poem-setup.el"
+	      "books-setup.el"
+
+	      ;; * * markup
+	      "markdown-setup.el"
+	      "org-setup.el"
+	      "lilypond-setup.el"
+
+	      ;; * * plaintext data
+	      "csv-setup.el"
+
+	      ;; * * programming
+	      "programming-setup.el"
+	      "documentation-setup.el"
+	      "tree-sitter-setup.el"
+	      "c-family-setup.el"
+	      "d-setup.el"
+	      "elisp-setup.el"
+	      "go-setup.el"
+	      "haskell-setup.el"
+	      "html-setup.el"
+	      "js-setup.el"
+	      "lisp-setup.el"
+	      "lsp-setup.el"
+	      "ocaml-setup.el"
+	      "python-setup.el"
+
+	      ;; * AI assistance
+	      "ai-setup.el"
+
+	      ;; * Math
+	      "math-setup.el"
+
+	      ;; * Documents
+	      "pdf-setup.el"
+
+	      ;; * Encryption / Decryption
+	      "crypto-setup.el"
+
+	      ;; * Diffs
+	      "diff-setup.el"
+
+	      ;; * Version control
+	      "magit-setup.el"
+
+	      ;; * Snippets
+	      "snippets-setup.el"
+
+	      ;; * Vertico
+	      "vertico-setup.el"
+
+	      ;; * Consult
+	      "consult-setup.el"
+
+	      ;; * Activities
+	      "activities-setup.el"))
 
 ;; M-x customize
 (setq custom-file (locate-user-emacs-file "custom-vars.el"))
 (load custom-file 'noerror 'nomessage)
 (put 'narrow-to-region 'disabled nil)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-vc-selected-packages
-   '((accent :vc-backend Git :url "https://github.com/eliascotto/accent")
-     (vc-use-package :vc-backend Git :url
-		     "https://github.com/slotThe/vc-use-package"))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
