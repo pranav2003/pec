@@ -18,6 +18,16 @@
 	   (keybinds ,@rest)))))
 
 ;; Tweaks to default bindings
+(defun my/restart-emacs (&optional args)
+  "Restart via systemd when running as a systemd service, else use `restart-emacs'."
+  (interactive)
+  (if (and (daemonp) (getenv "INVOCATION_ID"))   ; INVOCATION_ID is set by systemd
+      (when (save-some-buffers nil t)
+        ;; --no-block: queue the job and return right away, because systemd
+        ;; will kill this process (and its children) while stopping the unit.
+        (call-process "systemctl" nil 0 nil
+                      "--user" "--no-block" "restart" "emacs.service"))
+    (restart-emacs args)))
 
 (keybinds
  ; Better buffer menu
@@ -30,7 +40,7 @@
  "M-y" consult-yank-from-kill-ring
 
  ; Easy restart
- "C-x c" restart-emacs
+ "C-x c" my/restart-emacs
 
  ; Easy window switch
  "C-<tab>" other-window
@@ -86,7 +96,9 @@
  "C-z ; w p" pw-git-push
  "C-z /" compile
  "C-z e i" eglot-inlay-hints-mode
- "C-z e l" consult-flymake)
+ "C-z e l" consult-flymake
+ "C-v" View-scroll-half-page-forward
+ "M-v" View-scroll-half-page-backward)
 
  ; Delete up to / in filepath
 (defun my-backward-kill-filepath-minibuffer-setup ()

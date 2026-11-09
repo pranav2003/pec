@@ -10,6 +10,7 @@
   :config
   (setq vterm-timer-delay nil
 	vterm-max-scrollback 10000)
+  (setq vterm-buffer-name-string "*vterm* %s")
   (define-key vterm-mode-map (kbd "C-z") nil)
   (define-key vterm-mode-map (kbd "C-z C-z") #'vterm--self-insert))
 

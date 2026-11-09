@@ -91,6 +91,7 @@
 	      "programming-setup.el"
 	      "documentation-setup.el"
 	      "tree-sitter-setup.el"
+              "bitbake-setup.el"
 	      "c-family-setup.el"
 	      "d-setup.el"
 	      "elisp-setup.el"
@@ -102,6 +103,7 @@
 	      "lsp-setup.el"
 	      "ocaml-setup.el"
 	      "python-setup.el"
+              "qml-setup.el"
 
 	      ;; * AI assistance
 	      "ai-setup.el"

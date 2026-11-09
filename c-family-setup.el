@@ -2,6 +2,9 @@
 ;;; c-family-setup.el -- Configurations for C-like languages
 ;;;
 
+(use-package c-ts-mode
+  :ensure nil)
+
 (add-hook 'c-mode-common-hook
 	  (lambda ()
 	    (eglot-ensure)

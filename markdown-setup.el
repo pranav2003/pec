@@ -19,3 +19,9 @@
 (use-package adaptive-wrap
   :ensure t
   :commands adaptive-wrap-prefix-mode)
+
+(use-package grip-mode
+  :defer t
+  :config
+  (setq grip-command 'go-grip)
+  (setq grip-preview-host "localhost"))

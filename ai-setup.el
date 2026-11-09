@@ -2,7 +2,10 @@
 ;;; ai-setup.el -- Setup for AI LLM integration
 ;;;
 
-(use-package claudemacs
-  :vc (:url "https://github.com/cpoile/claudemacs" :rev :newest)
+
+(use-package agent-shell
   :config
-  (keybind "C-c c" claudemacs-transient-menu))
+  (dolist (map '(agent-shell-mode-map
+                 agent-shell-viewport-edit-mode-map
+                 agent-shell-viewport-view-mode-map))
+    (keymap-unset (symbol-value map) "C-<tab>" t)))
