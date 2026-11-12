@@ -12,7 +12,8 @@
 	vterm-max-scrollback 10000)
   (setq vterm-buffer-name-string "*vterm* %s")
   (define-key vterm-mode-map (kbd "C-z") nil)
-  (define-key vterm-mode-map (kbd "C-z C-z") #'vterm--self-insert))
+  (define-key vterm-mode-map (kbd "C-z C-z") #'vterm--self-insert)
+  (define-key vterm-mode-map (kbd "C-c C-c") #'vterm--self-insert))
 
 ;; The Elisp code below implements an interface to making and managing
 ;; `vterm' buffers that I've called `vterm-session'.
