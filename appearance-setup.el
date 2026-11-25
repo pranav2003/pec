@@ -6,8 +6,9 @@
 (use-package ef-themes
   :config
   (setq ef-melissa-dark-palette-overrides
-        '((prompt yellow-warmer))
-	ef-dream-palette-overrides
+	'((bg-search-lazy bg-cyan-intense)
+	  (fg-prompt yellow-warmer))
+        ef-dream-palette-overrides
 	'((prose-done green-warmer)))
 
   (keybinds
@@ -15,7 +16,7 @@
    "C-z C-t" ef-themes-toggle)
 
   (setq ef-themes-to-toggle
-	'(ef-reverie ef-dream)))
+	personal/ef-themes-to-toggle))
 
 (require-theme 'ef-themes)
 
@@ -79,3 +80,8 @@
 
 ;; Smooth scrolling
 (pixel-scroll-precision-mode 1)
+
+;; Remove annoying inverse-video effect in certain minibuffer text
+(when (facep 'read-multiple-choice-face)
+  (set-face-attribute 'read-multiple-choice-face nil
+                      :inverse-video nil))
